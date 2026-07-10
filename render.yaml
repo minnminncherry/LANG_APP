@@ -1,0 +1,28 @@
+services:
+  - type: web
+    name: lang-app-backend
+    env: python
+    plan: free
+    runtime: python-3.11
+    buildCommand: pip install -r backend/requirements.txt
+    startCommand: cd backend && uvicorn app:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: DATABASE_URL
+        scope: run
+        value: ${{ secrets.DATABASE_URL }}
+      - key: PYTHONUNBUFFERED
+        value: true
+    healthCheckPath: /health
+    routes:
+      - type: http
+        path: /api
+    
+  - type: web
+    name: lang-app-frontend
+    env: static
+    plan: free
+    buildCommand: npm ci && npm run build
+    staticPublishPath: dist
+    envVars:
+      - key: REACT_APP_API_URL
+        value: https://lang-app-backend.onrender.com
