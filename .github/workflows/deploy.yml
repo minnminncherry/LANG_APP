@@ -44,7 +44,7 @@ jobs:
           pytest backend/ -v || true
       
       - name: Upload React build artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: react-build
           path: dist/
