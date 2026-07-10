@@ -1,9 +1,40 @@
-body {
-  margin: 0;
-  background: #f5f7fb;
-  color: #1f2937;
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap');
+
+:root {
+  --font-display: 'Archivo Black', sans-serif;
+  --font-body: 'Archivo', sans-serif;
+  --font-mono: 'DM Mono', monospace;
+  --color-bg: #FAF8F2;
+  --color-fg: #16161A;
+  --color-primary: #E84855;
+  --color-primary-fg: #FFFFFF;
+  --color-secondary: #2EC4B6;
+  --color-accent: #FFD60A;
+  --color-muted: #F0EDE4;
+  --color-muted-fg: #6B6860;
+  --color-border: #D6D3CA;
+  --color-card: #FFFFFF;
 }
 
 * {
   box-sizing: border-box;
+}
+
+html, body {
+  background-color: #FAF8F2;
+  color: #16161A;
+  font-family: 'Archivo', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #D6D3CA;
+  border-radius: 2px;
 }
