@@ -1,9 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap');
+@import 'tailwindcss';
 
-:root {
+@theme {
   --font-display: 'Archivo Black', sans-serif;
   --font-body: 'Archivo', sans-serif;
   --font-mono: 'DM Mono', monospace;
+
   --color-bg: #FAF8F2;
   --color-fg: #16161A;
   --color-primary: #E84855;
