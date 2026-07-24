@@ -18,3 +18,7 @@ app.add_middleware(
 @app.get("/api/hello")
 def hello():
     return {"message":"Hello from FastAPI"}
+
+@app.post("/api/login")
+def login(username, password):
+    return 

@@ -6,11 +6,12 @@ import OldQuestions from './components/OldQuestions'
 import CourseSelect from './components/CourseSelect'
 import AdminApp from './admin/AdminApp'
 import { COURSES } from './data/courses'
-import Login from './components/login'
+import Login from './components/Login'
+import Signup from './components/Signup'
 import api from './api/api';
 
 
-type Tab = 'dashboard' | 'lessons' | 'flashcards' | 'old-questions' | 'login' | 'logout'
+type Tab = 'dashboard' | 'lessons' | 'flashcards' | 'old-questions'
 
 const NAV_ITEMS: { id: Tab; label: string; icon: string }[] = [
   { id: 'dashboard', label: 'Home', icon: '⌂' },
@@ -25,7 +26,8 @@ export default function App() {
   const [activeCourseId, setActiveCourseId] = useState('JLPT-N5')
   const [showCourseSelect, setShowCourseSelect] = useState(false)
   const [adminMode, setAdminMode] = useState(false)
-  const [login, setLogin] = useState(false)
+  const [loggedIn, setLoggedIn] = useState(false)
+  const [showSignup, setShowSignup] = useState(false)
 
   useEffect(() => {
       const loadBackend = async () => {
@@ -41,6 +43,14 @@ export default function App() {
 }, []);
 
   if (adminMode) return <AdminApp onExit={() => setAdminMode(false)} />
+
+  if (showSignup) {
+    return <Signup onLogin={() => { setLoggedIn(true); setShowSignup(false) }} />
+  }
+
+  if (!loggedIn) {
+    return <Login onLogin={() => setLoggedIn(true)} onSignup={() => setShowSignup(true)} />
+  }
 
   const course = COURSES.find(c => c.id === activeCourseId) ?? COURSES[0]
 
@@ -125,7 +135,7 @@ export default function App() {
             }}
           >ADMIN</button>
         </div>
-        <button onClick={()=>setLogin(true)} style={{fontFamily: '"DM Mono", monospace', color: '#FFD60A', fontSize: '10px',
+        <button onClick={() => setLoggedIn(false)} style={{fontFamily: '"DM Mono", monospace', color: '#FFD60A', fontSize: '10px',
               background: 'rgba(255,214,10,0.1)', padding: '5px 10px',
               border: '1px solid rgba(255,214,10,0.3)', cursor: 'pointer',
               letterSpacing: '0.08em',}}> Logout </button>
