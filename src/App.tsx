@@ -6,17 +6,17 @@ import OldQuestions from './components/OldQuestions'
 import CourseSelect from './components/CourseSelect'
 import AdminApp from './admin/AdminApp'
 import { COURSES } from './data/courses'
+import Login from './components/login'
 import api from './api/api';
 
 
-type Tab = 'dashboard' | 'lessons' | 'flashcards' | 'old-questions' | 'login'
+type Tab = 'dashboard' | 'lessons' | 'flashcards' | 'old-questions' | 'login' | 'logout'
 
 const NAV_ITEMS: { id: Tab; label: string; icon: string }[] = [
   { id: 'dashboard', label: 'Home', icon: '⌂' },
   { id: 'lessons', label: 'Lessons', icon: '📖' },
   { id: 'flashcards', label: 'Cards', icon: '◈' },
   { id: 'old-questions', label: 'Review', icon: '✏️' },
-  {id : 'login', label: 'login', icon: '◈'}
 ]
 
 export default function App() {
@@ -25,6 +25,7 @@ export default function App() {
   const [activeCourseId, setActiveCourseId] = useState('JLPT-N5')
   const [showCourseSelect, setShowCourseSelect] = useState(false)
   const [adminMode, setAdminMode] = useState(false)
+  const [login, setLogin] = useState(false)
 
   useEffect(() => {
       const loadBackend = async () => {
@@ -124,6 +125,10 @@ export default function App() {
             }}
           >ADMIN</button>
         </div>
+        <button onClick={()=>setLogin(true)} style={{fontFamily: '"DM Mono", monospace', color: '#FFD60A', fontSize: '10px',
+              background: 'rgba(255,214,10,0.1)', padding: '5px 10px',
+              border: '1px solid rgba(255,214,10,0.3)', cursor: 'pointer',
+              letterSpacing: '0.08em',}}> Logout </button>
       </header>
 
       {/* Main content */}
