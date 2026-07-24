@@ -93,7 +93,7 @@ export default function CourseSelect({
           fontFamily: '"DM Mono", monospace', fontSize: '10px',
           color: '#6B6860', letterSpacing: '0.12em', textTransform: 'uppercase',
           marginBottom: '6px',
-        }}>LingoLoop</div>
+        }}>JLPTLANG</div>
         <h2 style={{ fontFamily: '"Archivo Black", sans-serif', fontSize: '26px', margin: 0, lineHeight: 1.1 }}>
           My Courses
         </h2>

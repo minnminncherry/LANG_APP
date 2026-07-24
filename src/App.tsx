@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Dashboard from './components/Dashboard'
 import Lessons from './components/Lessons'
 import Flashcards from './components/Flashcards'
@@ -6,21 +6,38 @@ import OldQuestions from './components/OldQuestions'
 import CourseSelect from './components/CourseSelect'
 import AdminApp from './admin/AdminApp'
 import { COURSES } from './data/courses'
+import api from './api/api';
 
-type Tab = 'dashboard' | 'lessons' | 'flashcards' | 'old-questions'
+
+type Tab = 'dashboard' | 'lessons' | 'flashcards' | 'old-questions' | 'login'
 
 const NAV_ITEMS: { id: Tab; label: string; icon: string }[] = [
   { id: 'dashboard', label: 'Home', icon: '⌂' },
   { id: 'lessons', label: 'Lessons', icon: '📖' },
   { id: 'flashcards', label: 'Cards', icon: '◈' },
   { id: 'old-questions', label: 'Review', icon: '✏️' },
+  {id : 'login', label: 'login', icon: '◈'}
 ]
 
 export default function App() {
+  const [message, setMessage] = useState("");
   const [tab, setTab] = useState<Tab>('dashboard')
-  const [activeCourseId, setActiveCourseId] = useState('fr-a2')
+  const [activeCourseId, setActiveCourseId] = useState('JLPT-N5')
   const [showCourseSelect, setShowCourseSelect] = useState(false)
   const [adminMode, setAdminMode] = useState(false)
+
+  useEffect(() => {
+      const loadBackend = async () => {
+        try {
+            const response = await api.get("/api/hello");
+            setMessage(response.data.message);
+        } catch (err) {
+            console.error(err);
+            setMessage("❌ Cannot connect to backend");
+        }
+    };
+    loadBackend();
+}, []);
 
   if (adminMode) return <AdminApp onExit={() => setAdminMode(false)} />
 
@@ -47,7 +64,7 @@ export default function App() {
               transform: 'rotate(-3deg)',
             }}>L</div>
             <span style={{ fontFamily: '"Archivo Black", sans-serif', color: '#FAF8F2', fontSize: '18px', letterSpacing: '-0.5px' }}>
-              LINGO<span style={{ color: '#FFD60A' }}>LOOP</span>
+              JLPT<span style={{ color: '#FFD60A' }}>LANG</span>
             </span>
           </div>
           <button
@@ -80,9 +97,9 @@ export default function App() {
             display: 'flex', alignItems: 'center', justifyContent: 'center',
             fontFamily: '"Archivo Black", sans-serif', color: '#FFD60A', fontSize: '14px',
             transform: 'rotate(-3deg)',
-          }}>L</div>
+          }}>JL</div>
           <span style={{ fontFamily: '"Archivo Black", sans-serif', color: '#FAF8F2', fontSize: '18px', letterSpacing: '-0.5px' }}>
-            LINGO<span style={{ color: '#FFD60A' }}>LOOP</span>
+            JLPT<span style={{ color: '#FFD60A' }}>LANG</span>
           </span>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
@@ -111,6 +128,10 @@ export default function App() {
 
       {/* Main content */}
       <main style={{ flex: 1, overflowY: 'auto' }}>
+        <div style={{padding: 15, background: "#2EC4B6",color: "white"}}>
+          Backend says:
+          {message}
+        </div>
         {tab === 'dashboard' && (
           <Dashboard
             course={course}

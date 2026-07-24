@@ -25,12 +25,11 @@ export default function Dashboard({
     { label: 'Flashcards', desc: `${course.flashcards.length} cards in deck`, tab: 'flashcards', color: '#2EC4B6', geo: '◆' },
   ]
 
-  const TIPS: Record<string, string> = {
-    'fr-a2': '"Tu" and "vous" both mean "you" — use "tu" with friends and family, "vous" for formality or groups.',
-    'es-a1': 'Spanish has two verbs for "to be" — "ser" for permanent traits, "estar" for temporary states.',
-    'ja-a1': 'Japanese has three writing systems: Hiragana, Katakana, and Kanji. Start with Hiragana!',
-    'de-b1': 'All German nouns are capitalized. Every noun has a gender: der (m), die (f), das (n).',
-  }
+  const currentDate = new Date().toLocaleDateString("en-US", {
+  weekday: "long",
+  month: "long",
+  day: "numeric",
+  });
 
   return (
     <div style={{ padding: '24px 20px', maxWidth: 600, margin: '0 auto' }}>
@@ -39,10 +38,10 @@ export default function Dashboard({
         <div style={{
           fontFamily: '"DM Mono", monospace', fontSize: '11px', color: '#6B6860',
           letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '6px',
-        }}>Thursday, July 10</div>
+        }}>{currentDate}</div>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
           <h1 style={{ fontFamily: '"Archivo Black", sans-serif', fontSize: '28px', color: '#16161A', margin: 0, lineHeight: 1.1 }}>
-            Bonjour,<br /><span style={{ color: '#E84855' }}>Sophie!</span>
+            Hello,<br /><span style={{ color: '#E84855' }}>Sophie!</span>
           </h1>
           <button
             onClick={onChangeCourse}
@@ -160,9 +159,6 @@ export default function Dashboard({
             fontFamily: '"Archivo Black", sans-serif', fontSize: '11px',
             letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: '4px', color: '#2EC4B6',
           }}>Tip du Jour</div>
-          <div style={{ fontFamily: '"Archivo", sans-serif', fontSize: '13px', color: '#16161A', lineHeight: 1.5 }}>
-            {TIPS[course.id] ?? 'Keep practicing every day — consistency is the key to fluency!'}
-          </div>
         </div>
       </div>
     </div>

@@ -41,7 +41,7 @@ function LoginGate({ onLogin }: { onLogin: () => void }) {
               transform: 'rotate(-3deg)',
             }}>L</div>
             <span style={{ fontFamily: '"Archivo Black", sans-serif', color: '#FAF8F2', fontSize: '24px', letterSpacing: '-0.5px' }}>
-              LINGO<span style={{ color: '#FFD60A' }}>LOOP</span>
+              JLPT<span style={{ color: '#FFD60A' }}>LANG</span>
             </span>
           </div>
           <div style={{
@@ -114,7 +114,7 @@ export default function AdminApp({ onExit }: { onExit: () => void }) {
             transform: 'rotate(-3deg)',
           }}>L</div>
           <span style={{ fontFamily: '"Archivo Black", sans-serif', color: '#FAF8F2', fontSize: '15px', letterSpacing: '-0.3px' }}>
-            LINGO<span style={{ color: '#FFD60A' }}>LOOP</span>
+            JLPT<span style={{ color: '#FFD60A' }}>LANG</span>
           </span>
           <span style={{
             fontFamily: '"DM Mono", monospace', fontSize: '9px',
